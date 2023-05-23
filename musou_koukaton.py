@@ -240,6 +240,7 @@ class Enemy(pg.sprite.Sprite):
 
     def __init__(self):
         super().__init__()
+        self.emy_life = 1
         self.image = random.choice(__class__.imgs)
         self.rect = self.image.get_rect()
         self.rect.center = random.randint(0, WIDTH), 0
@@ -314,10 +315,10 @@ class Shield(pg.sprite.Sprite):
         if self.life < 0:
             self.kill()
 
-
+#追加機能　レベルアップ
 class Level:
     """
-    こうかとんのレベルに関するクラス
+    ゲームのレベルに関するクラス
     """
     def __init__(self):
         self.font = pg.font.Font(None, 50)
@@ -330,18 +331,32 @@ class Level:
         
     def exp_up(self, add:int):
         """
-        経験値の計算を行う
+        経験値,レベルの計算を行う
         """
         self.exp += add
         if self.exp >= self.lim: #経験値上限self.limを累積経験値self.expが超えたら
             self.level += 1      #レベルが一つ上がる
             self.exp -= self.lim
             self.lim += random.randint(1, 5)
+            
     
     def update(self, screen:pg.surface):
+        """
+        レベルの表示の更新を行う
+        """
         self.image = self.font.render(f"Level: {self.level}", 0, self.color)
         screen.blit(self.image, (250, 100)) 
 
+"""
+class Level_Ef(pg.sprite.Sprite):
+    
+    レベルアップによりゲームに影響がある
+    
+    def __init__(self, beam:Beam):
+        
+
+    def speed_up(self):
+"""           
 
 
 def main():
