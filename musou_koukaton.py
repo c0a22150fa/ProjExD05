@@ -240,7 +240,7 @@ class Enemy(pg.sprite.Sprite):
 
     def __init__(self):
         super().__init__()
-        self.emy_life = 1
+        self.life = 1
         self.image = random.choice(__class__.imgs)
         self.rect = self.image.get_rect()
         self.rect.center = random.randint(0, WIDTH), 0
@@ -349,11 +349,13 @@ class Level:
 
 """
 class Level_Ef(pg.sprite.Sprite):
-    
+
+    今回は作ることができなかったため機能を実装したい 
     レベルアップによりゲームに影響がある
     
-    def __init__(self, beam:Beam):
-        
+    def __init__(self, emy:Enemy, lev:Level):
+        if lev.level % 3 == 0:
+            emy.life += 1
 
     def speed_up(self):
 """           
